@@ -1,0 +1,17 @@
+p, code {
+  font-size: 2em;
+}
+math, code {
+  background-color: #fff8dc;
+}
+math {
+  margin: 1em 2em;
+  padding: 0.5em 1em;
+  font: 3em monospace;
+}
+code {
+  display: inline-block;
+  white-space: pre;
+  margin: 0 2em;
+  padding: 1em 0.5em;
+}

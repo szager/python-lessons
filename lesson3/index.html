@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<link href="../python-lessons.css" rel="stylesheet">
+
+<h1 tabindex=0>Pi</h1>
+
+<p tabindex=0>
+Let's forget about computer programming for a minute, and talk about something even more interesting: pi (or, as it was originally written in the Greek alphabet, &pi;).
+</p>
+
+<p tabindex=0>
+You may know that pi is 3.14159265 something something something. In fact, the digits of pi go on forever, and they never repeat. But what is pi? Why is it an important number? Why do we care about it at all?
+</p>
+
+<p tabindex=0>
+Imagine you have a perfect circle. Every perfect circle has a center; and every point on a perfect circle is exactly the same distance from the center. That distance is the circle's radius.
+</p>
+
+<p tabindex=0>
+Now imagine a straight line that cuts the circle exactly in half. That line will pass through the center of the circle, and it will intersect the circle at two points that are on opposite sides. The distance between those two points on opposite sides of the circle is called the diameter, and it is exactly twice the length of the radius.
+</p>
+
+<p tabindex=0>
+Pick any point on the circle. Beginning from that point, start walking along the circle in either direction. Walk all the way around the circle until you have returned to your starting point. How far did you walk? That distance is called the circumference of the circle.
+</p>
+
+<p tabindex=0>
+Every perfect circle has a radius, a diameter, and a circumference. We know that the diameter is exactly twice as long as the radius. But what is the relationship between diameter and circumference? Here it is: the circumference is exactly equal to the diameter times pi, and that is true for every perfect circle in the universe. And that is the one and only reason we care about pi.
+</p>
+
+<p tabindex=0>
+Now we know why pi is important and useful, but how do we know what the actual value of pi is? How did we figure out that it's three point one four one five blah blah blah for ever? Well, one way to figure it out would be to take a perfect circle, measure its diameter and circumference with a tape measure, and then divide the circumference by the diameter. That will work, and that's probably what the earliest mathematicians did to figure out the value of pi, thousands of years ago. But there's a limit to how accurately you can calculate pi using that method. Modern mathematicians have computed pi to millions of digits. How did they do it?
+</pi>
+
+<p tabindex=0>
+Well, it turns out that there are a bunch of fancy mathematical ways to compute very accurate approximations of pi. Here's one of them:
+</p>
+
+<math tabindex=0>
+&pi; = 4 - &#x2074;&#x2044;&#x2083; + &#x2074;&#x2044;&#x2085; - &#x2074;&#x2044;&#x2087; + &#x2074;&#x2044;&#x2089; - &#x2074;&#x2044;&#x2081;&#x2081; + &hellip;
+</math>
+
+<p tabindex=0>
+That is an infinite series of numbers; it goes on forever, following the same pattern. If we could add up all the numbers in the series, to infinity, the result would be exactly pi. Of course, we can't add together an infinite series. But if we add up a bunch of the numbers, we'll get an approximation of pi. And here's the important point: the further we go in the series, the more accurate our approximation of pi will be. If we stop after the first hundred numbers, that will be more accurate than adding the first fifty numbers. If we add up the first thousand numbers, it will be still more accurate.
+</p>
+
+<p tabindex=0>
+You know what a really good tool is for adding up a very long list of numbers? A computer! Before we dive into the code, I'm going to make one small adjustment to the series of numbers -- I'm going to change just the first number after the equals sign, to make it a bit easier to program:
+</p>
+
+<math tabindex=0>
+&pi; = &#x2074;&#x2044;&#x2081; - &#x2074;&#x2044;&#x2083; + &#x2074;&#x2044;&#x2085; - &#x2074;&#x2044;&#x2087; + &#x2074;&#x2044;&#x2089; - &#x2074;&#x2044;&#x2081;&#x2081; + &hellip;
+</math>
+  
+<p tabindex=0>
+Do these numbers remind you of anything? Can you see how the python challenges you had last week might come in handy here? Let's first consider the numerators of the fractions. Can we write a for loop to generate just the numerators for the first few numbers in the series? Pretty simple:
+</p>
+
+<code tabindex=0>&gt;&gt;&gt; for n in range(3):
+...   print 4
+...
+4
+4
+4
+&gt;&gt;&gt;
+</code>
+
+<p tabindex=0>
+How about the denominators? What is the pattern? They are the series of odd numbers, starting from one. Here's code to generate the first few denominators:
+</p>
+
+<code tabindex=0>&gt;&gt;&gt; for d in range(3):
+...   print (2 * d) + 1
+...
+1
+3
+5
+&gt;&gt;&gt;
+</code>
+
+<p tabindex=0>
+  Now consider the plus'es and minus'es. The series alternates between adding and subtracting numbers. We can use the same method here that we used to tell whether numbers were odd or even, by using remainder division:
+</p>
+
+<code tabindex=0>&gt;&gt;&gt; for d in range(4):
+...   if d % 2 == 0:
+...       print "add"
+...   else:
+...       print "subtract"
+add
+subtract
+add
+subtract
+&gt;&gt;&gt;
+</code>
+  
+<p tabindex=0>
+Now let's put it all together to add up the first ten terms of the series. Each time we add another number in the series, we'll print our approximation of pi so far. We should see it get more accurate as we get further along.
+</p>
+
+<code tabindex=0>&gt;&gt;&gt; pi = 0
+&gt;&gt;&gt; for x in range(10):
+...   n = 4.0
+...   d = (2 * x) + 1  
+...   if x % 2 == 0:
+...     pi = pi + (n/d)
+...   else:
+...     pi = pi - (n/d)
+...   print pi
+4.0
+2.66666666667
+3.46666666667
+2.89523809524
+3.33968253968
+2.97604617605
+3.28373848374
+3.01707181707
+3.25236593472
+3.04183961893
+&gt;&gt;&gt;
+</code>
+
+<p tabindex=0>
+You may have noticed one small change in the way we set the numberator; instead of this:
+</p>
+
+<code tabindex=0>
+n = 4
+</code>
+
+<p tabindex=0>
+We instead do this:
+</p>
+
+<code tabindex=0>
+n = 4.0
+</code>
+
+<p tabindex=0>
+By adding a decimal point to the number, we are signalling to python that when we divide the numerator by the denominator, we don't want to use remainder division. Instead, we want python to compute the actual result with fractions.
+</p>
+
+<p tabindex=0>
+What we have so far is useful for computing the first ten digits of pi. But we don't want to be limited to just ten numbers in the series. We want to be able to pick any number of terms in the series we want. Maybe ten, maybe 100, maybe a million! We can improve our solution by writing a function. Remember: a function always has an input and an output. The input to our function will be the number of terms in the series we want to computer. The output will be the approximation of pi up to that number of terms.
+</p>
+
+<code tabindex=0>&gt;&gt;&gt; def pi(howmany):
+...   result = 0
+...   for x in range(howmany):
+...     n = 4.0
+...     d = (2 * x) + 1  
+...     if x % 2 == 0:
+...       pi = pi + (n/d)
+...     else:
+...       pi = pi - (n/d)
+...   return result
+...
+&gt;&gt;&gt;
+</code>
+
+<p tabindex=0>
+With that function, we can try out different numbers to see how accurate our approximation of pi will get:
+</p>
+
+<code tabindex=0>
+&gt;&gt;&gt; pi(1)
+4.0
+&gt;&gt;&gt; pi(10)
+3.0418396189294032
+&gt;&gt;&gt; pi(100)
+3.1315929035585537
+&gt;&gt;&gt; pi(1000)
+3.1405926538397941
+&gt;&gt;&gt; 
+</code>
+
+<p tabindex=0>
+How accurate can you get in estimating pi? How big a number can you use as input to your function before python gets slow?
+</p>
