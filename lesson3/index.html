@@ -120,19 +120,17 @@ Now let's put it all together to add up the first ten terms of the series. Each 
 </code>
 
 <p tabindex=0>
-You may have noticed one small change in the way we set the numberator; instead of this:
+You may have noticed one small change in the way we set the numerator; instead of this:
 </p>
 
-<code tabindex=0>
-n = 4
+<code tabindex=0>n = 4
 </code>
 
 <p tabindex=0>
 We instead do this:
 </p>
 
-<code tabindex=0>
-n = 4.0
+<code tabindex=0>n = 4.0
 </code>
 
 <p tabindex=0>
@@ -140,7 +138,7 @@ By adding a decimal point to the number, we are signalling to python that when w
 </p>
 
 <p tabindex=0>
-What we have so far is useful for computing the first ten digits of pi. But we don't want to be limited to just ten numbers in the series. We want to be able to pick any number of terms in the series we want. Maybe ten, maybe 100, maybe a million! We can improve our solution by writing a function. Remember: a function always has an input and an output. The input to our function will be the number of terms in the series we want to computer. The output will be the approximation of pi up to that number of terms.
+What we have so far is useful for adding up the first ten numbers in the series. But we don't want to be limited to just ten numbers. We want to be able to pick any number of terms in the series we want. Maybe ten, maybe 100, maybe a million! We can improve our solution by writing a function. Remember: a function always has an input and an output. The input to our function will be the number of terms in the series we want to compute. The output will be the approximation of pi up to that number of terms.
 </p>
 
 <code tabindex=0>&gt;&gt;&gt; def pi(howmany):
@@ -174,5 +172,5 @@ With that function, we can try out different numbers to see how accurate our app
 </code>
 
 <p tabindex=0>
-How accurate can you get in estimating pi? How big a number can you use as input to your function before python gets slow?
+How accurate can you get in estimating pi? How big a number can you use as input to our pi function before python gets slow?
 </p>
